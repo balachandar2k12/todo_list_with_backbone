@@ -1,4 +1,3 @@
-
 $(function(){
 
 	var Todo = Backbone.Model.extend({
@@ -94,8 +93,7 @@ $(function(){
     list_status: _.template($('#stats-template').html()),
     events: {
       "keypress #new-todo":  "createOnEnter",
-      "click #clear-completed": "clearCompleted",
-      "click #toggle-all": "toggleAllComplete"
+      "click #clear-completed": "clearCompleted"
     },
 
     initialize: function() {
@@ -155,11 +153,6 @@ $(function(){
     clearCompleted: function() {
       _.invoke(Todos.done(), 'destroy');
       return false;
-    },
-
-    toggleAllComplete: function () {
-      var done = this.allCheckbox.checked;
-      Todos.each(function (todo) { todo.save({'done': done}); });
     }
 
   });
